@@ -8,6 +8,10 @@ A very simple local client-server calculator project built using [Cobra](https:/
 
 First clone the repository and use `go install` to install the project.
 Then, for running server use:
-```golculator runserver PORTNUMBER```
+```
+golculator runserver PORTNUMBER
+```
 Running client is very similiar to running server, you can use:
-```golculator runclient DestPORTNUMBER```
+```
+golculator runclient DestPORTNUMBER
+```
