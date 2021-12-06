@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A very simple local client-server calculator project built using [cobra](https://github.com/spf13/cobra) and socket programming written in Go.
+A very simple local client-server calculator project built using [Cobra](https://github.com/spf13/cobra) and socket programming written in Go.
 
 ## Setup and run
 
