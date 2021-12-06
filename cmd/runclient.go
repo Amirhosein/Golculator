@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	"golculator/modules"
 
 	"github.com/spf13/cobra"
@@ -25,15 +24,10 @@ import (
 // runclientCmd represents the runclient command
 var runclientCmd = &cobra.Command{
 	Use:   "runclient",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Run a client with given port",
+	Long: `Run a client with given port,
+	Example: golculator runclient 8080`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("runclient called")
 		modules.RunClient(args[0])
 	},
 }
