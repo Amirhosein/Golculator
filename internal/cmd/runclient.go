@@ -16,35 +16,32 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-	"golculator/modules"
+	"golculator/internal/client"
 
 	"github.com/spf13/cobra"
 )
 
-// runserverCmd represents the runserver command
-var runserverCmd = &cobra.Command{
-	Use:   "runserver",
+// runclientCmd represents the runclient command
+var runclientCmd = &cobra.Command{
+	Use:   "runclient",
 	Short: "Run a client with given port",
-	Long: `Run a client with given port, and listen to the port.
-	for example: golculator runserver 8080
-	`,
+	Long: `Run a client with given port,
+	Example: golculator runclient 8080`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("runserver called")
-		modules.RunServer(args[0])
+		client.RunClient(args[0])
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(runserverCmd)
+	rootCmd.AddCommand(runclientCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// runserverCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// runclientCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// runserverCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// runclientCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

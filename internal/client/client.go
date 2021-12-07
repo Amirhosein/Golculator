@@ -1,7 +1,8 @@
-package modules
+package client
 
 import (
 	"fmt"
+	"log"
 	"net"
 	"strconv"
 	"strings"
@@ -64,4 +65,25 @@ func RunClient(port string) {
 
 func isOperator(msg string) bool {
 	return msg == "+" || msg == "-" || msg == "*" || msg == "/"
+}
+
+func sendMessage(c net.Conn, message string) error {
+	_, err := c.Write([]byte(message))
+	if err != nil {
+		log.Printf("Error writing to client: %s", err)
+		c.Close()
+		return err
+	}
+	return nil
+}
+
+func readMessage(c net.Conn) (string, error) {
+	buffer := make([]byte, 4096)
+	n, err := c.Read(buffer)
+	if err != nil || n == 0 {
+		log.Printf("Error reading from client: %s", err)
+		c.Close()
+		return "", err
+	}
+	return string(buffer[:n]), nil
 }

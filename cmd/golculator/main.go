@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "golculator/cmd"
+import "golculator/internal/cmd"
 
 func main() {
 	cmd.Execute()
