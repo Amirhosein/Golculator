@@ -15,3 +15,6 @@ Running client is very similiar to running server, you can use:
 ```
 golculator runclient DestPORTNUMBER
 ```
+
+
+Work in progress ...
