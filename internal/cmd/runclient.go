@@ -28,7 +28,10 @@ var runclientCmd = &cobra.Command{
 	Long: `Run a client with given port,
 	Example: golculator runclient 8080`,
 	Run: func(cmd *cobra.Command, args []string) {
-		client.RunClient(args[0])
+		client := client.SocketClient{
+			Port: args[0],
+		}
+		client.RunClient()
 	},
 }
 

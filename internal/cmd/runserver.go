@@ -31,7 +31,10 @@ var runserverCmd = &cobra.Command{
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("runserver called")
-		server.RunServer(args[0])
+		server := server.SocketServer{
+			Port: args[0],
+		}
+		server.RunServer()
 	},
 }
 
