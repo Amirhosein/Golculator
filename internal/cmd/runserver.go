@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	"golculator/internal/server"
 
 	"github.com/spf13/cobra"
@@ -25,21 +24,29 @@ import (
 // runserverCmd represents the runserver command
 var runserverCmd = &cobra.Command{
 	Use:   "runserver",
-	Short: "Run a client with given port",
-	Long: `Run a client with given port, and listen to the port.
-	for example: golculator runserver 8080
+	Short: "Run a API server on port 8080",
+	Long: `Run a API server on port 8080, and listen to the port.
+	for example: golculator runserver 
+	
+	To change the port, use the flag -p or --port and the port you want to listen.
+	To run a socket server, use the flag -s or --socket.
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("runserver called")
-		server := server.SocketServer{
-			Port: args[0],
+		port, _ := cmd.Flags().GetString("port")
+		socket, _ := cmd.Flags().GetBool("socket")
+		if socket {
+			server := server.SocketServer{
+				Port: port,
+			}
+			server.RunServer()
 		}
-		server.RunServer()
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(runserverCmd)
+	runserverCmd.Flags().StringP("port", "p", "8080", "port to listen")
+	runserverCmd.Flags().BoolP("socket", "s", false, "socket server")
 
 	// Here you will define your flags and configuration settings.
 
