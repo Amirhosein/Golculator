@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/labstack/echo/v4"
 
@@ -29,7 +30,8 @@ func (s *ApiServer) RunServer() {
 		operator := c.FormValue("operator")
 		result := numerical.Calculate(num1, num2, operator)
 
-		s := fmt.Sprintf("%f", result)
+		s := fmt.Sprintf("%g", result)
+		log.Println(num1, num2, operator, "=", result)
 		return c.String(200, s)
 
 	})
