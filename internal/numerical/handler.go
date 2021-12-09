@@ -4,13 +4,14 @@ import "strconv"
 
 func Calculate(num1, num2 float64, op string) float64 {
 	switch op {
-	case "+":
+	// + or "add"
+	case "+", "add":
 		return Add(num1, num2)
-	case "-":
+	case "-", "sub":
 		return Sub(num1, num2)
-	case "*":
+	case "*", "mul":
 		return Mul(num1, num2)
-	case "/":
+	case "/", "div":
 		return Div(num1, num2)
 	}
 	return 0
@@ -26,4 +27,18 @@ func ParseNumber(message string) (float64, error) {
 
 func IsOperator(msg string) bool {
 	return msg == "+" || msg == "-" || msg == "*" || msg == "/"
+}
+
+func OperatorToString(sign string) string {
+	switch sign {
+	case "+":
+		return "add"
+	case "-":
+		return "sub"
+	case "*":
+		return "mul"
+	case "/":
+		return "div"
+	}
+	return ""
 }
