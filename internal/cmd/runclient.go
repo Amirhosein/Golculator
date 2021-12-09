@@ -28,21 +28,31 @@ var runclientCmd = &cobra.Command{
 	Long: `Run a client on port 8080,
 	Example: golculator runclient
 	
-	To change the port, use the flag -p or --port
+	To change the port, use the flag -p or --port.
+	To run a socket client, use the flag -s or --socket.
+
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		port, _ := cmd.Flags().GetString("port")
-
-		client := client.SocketClient{
-			Port: port,
+		socket, _ := cmd.Flags().GetBool("socket")
+		if socket {
+			client := client.SocketClient{
+				Port: port,
+			}
+			client.RunClient()
+		} else {
+			client := client.ApiClient{
+				Port: port,
+			}
+			client.RunClient()
 		}
-		client.RunClient()
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(runclientCmd)
 	runclientCmd.Flags().StringP("port", "p", "8080", "port to listen")
+	runclientCmd.Flags().BoolP("socket", "s", false, "socket server")
 
 	// Here you will define your flags and configuration settings.
 
