@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net"
-	"strconv"
+
+	"golculator/internal/server/numerical"
 )
 
 type SocketServer struct {
@@ -50,7 +51,7 @@ func handleConnection(c net.Conn) {
 		if clientMessage[0] == '+' || clientMessage[0] == '-' || clientMessage[0] == '*' || clientMessage[0] == '/' {
 
 			operator = clientMessage[0:1]
-			secondNum, err := ParseNumber(clientMessage[1:])
+			secondNum, err := numerical.ParseNumber(clientMessage[1:])
 			if err != nil {
 				log.Print(err)
 				return
@@ -64,7 +65,7 @@ func handleConnection(c net.Conn) {
 			log.Printf("Server response: %s", "RESULT: "+fmt.Sprintf("%f", num))
 
 		} else {
-			num, err = ParseNumber(clientMessage)
+			num, err = numerical.ParseNumber(clientMessage)
 			if err != nil {
 				log.Print(err)
 				return
@@ -101,24 +102,6 @@ func readMessage(c net.Conn) (string, error) {
 	return string(buffer[:n]), nil
 }
 
-func ParseNumber(message string) (float64, error) {
-	num, err := strconv.ParseFloat(message, 64)
-	if err != nil {
-		return 0, err
-	}
-	return num, nil
-}
-
 func calculate(num1 float64, num2 float64, operator string) float64 {
-	switch operator {
-	case "+":
-		return num1 + num2
-	case "-":
-		return num1 - num2
-	case "*":
-		return num1 * num2
-	case "/":
-		return num1 / num2
-	}
-	return 0
+	return numerical.Calculate(num1, num2, operator)
 }
