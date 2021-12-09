@@ -32,7 +32,7 @@ func (s *ApiServer) RunServer() {
 
 		s := fmt.Sprintf("%g", result)
 		log.Println(num1, num2, operator, "=", result)
-		return c.String(200, s)
+		return c.String(200, "RESULT: "+s)
 
 	})
 	e.Logger.Fatal(e.Start(":" + s.Port))
