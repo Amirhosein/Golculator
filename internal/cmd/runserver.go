@@ -39,6 +39,11 @@ var runserverCmd = &cobra.Command{
 				Port: port,
 			}
 			server.RunServer()
+		} else {
+			server := server.ApiServer{
+				Port: port,
+			}
+			server.RunServer()
 		}
 	},
 }
