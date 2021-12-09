@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"golculator/internal/numerical"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -54,7 +55,12 @@ func (ac ApiClient) RunClient() {
 		if err != nil {
 			log.Print(err)
 		}
-		fmt.Println(resp.Body)
+		// read body
+		resBody, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			log.Print(err)
+		}
+		fmt.Println(string(resBody))
 		defer resp.Body.Close()
 	}
 
