@@ -23,3 +23,7 @@ func ParseNumber(message string) (float64, error) {
 	}
 	return num, nil
 }
+
+func IsOperator(msg string) bool {
+	return msg == "+" || msg == "-" || msg == "*" || msg == "/"
+}

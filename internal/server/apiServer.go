@@ -5,7 +5,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 
-	"golculator/internal/server/numerical"
+	"golculator/internal/numerical"
 )
 
 type ApiServer struct {

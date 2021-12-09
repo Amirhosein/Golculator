@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	"golculator/internal/server/numerical"
+	"golculator/internal/numerical"
 )
 
 type SocketServer struct {

@@ -2,6 +2,7 @@ package client
 
 import (
 	"fmt"
+	"golculator/internal/numerical"
 	"log"
 	"net"
 	"strconv"
@@ -38,10 +39,10 @@ func (sc SocketClient) RunClient() {
 	for {
 		fmt.Scanln(&msg)
 
-		if isOperator(msg) && !num {
+		if numerical.IsOperator(msg) && !num {
 			fmt.Println("You can't use operators without a number.")
 			continue
-		} else if isOperator(msg) && num {
+		} else if numerical.IsOperator(msg) && num {
 			operator = msg
 			fmt.Scanln(&msg)
 			msg = operator + msg
@@ -65,10 +66,6 @@ func (sc SocketClient) RunClient() {
 			fmt.Println(msg)
 		}
 	}
-}
-
-func isOperator(msg string) bool {
-	return msg == "+" || msg == "-" || msg == "*" || msg == "/"
 }
 
 func sendMessage(c net.Conn, message string) error {
