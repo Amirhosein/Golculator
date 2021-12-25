@@ -6,7 +6,7 @@ A very simple local client-server calculator project built using [Cobra](https:/
 
 ## Setup and run
 
-First clone the repository and use `go install` to install the project.
+First clone the repository and use `go install` or use the makefile to install the project.
 Then, for running server use:
 ```
 golculator runserver
@@ -17,5 +17,3 @@ golculator runclient
 ```
 There are also two kind of flags, `-p` or `--port` to run program on a specific port number, and `-s` or `--socket` to run a socket version of client and server.
 
-
-Work in progress ...
